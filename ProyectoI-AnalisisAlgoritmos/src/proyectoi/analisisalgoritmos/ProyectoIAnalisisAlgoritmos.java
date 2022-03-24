@@ -28,15 +28,11 @@ public class ProyectoIAnalisisAlgoritmos {
         return (endTime-startTime);
     }
     */
-    
-    
-    
     public static void pruebaContarMilisegundosPrograma(){
         for(int i=0;i<1000;i++){
             System.out.println("i: "+i);
         }
     }
-    
     
     public static void main(String[] args) {
         //Tiempo guarda tiempo inicial en milisegundos de todo el programa
