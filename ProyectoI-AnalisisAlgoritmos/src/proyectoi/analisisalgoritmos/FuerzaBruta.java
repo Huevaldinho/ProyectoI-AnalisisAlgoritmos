@@ -21,20 +21,24 @@ public class FuerzaBruta {
     
     //Variable que guarda el número que suma la combinación (respaldo de currensum - GLOBAL)
     static int sumaMenor = 1000; 
+    //También nos ayudará a saber si en algún momento se encuentra la combinación (sumMenor = 0)
     
-    //Nos ayudará a saber si en algún momento se encuentra la combinación
-    static boolean bandera = false; 
     
     /***
      * 
      * @param arrA: Arreglo de numeros en el que se buscara si  hay subconjunto  que sume 0.
+     * @return combMasCercana: Arreglo de números que suman cero o el número más cercano a cero. 
      */
-    public void findSets(int [] arrA){
+    public List<Integer> findSets(int [] arrA){
         System.out.println("Given Array: " + Arrays.toString(arrA) + ", required sum: " + 0);
         Arrays.sort(arrA);//Ordena el arreglo
         List<Integer> combinationList = new ArrayList<>();
         combinationUtil(arrA, 0, 0, combinationList);
+        //return (combMasCercana.stream().mapToInt(Integer::intValue).toArray()); //convierte la lista en un array sencillo. 
+        return combMasCercana;
     }
+    
+
     /**
      * 
      * @param arrA: Arreglo de numeros.
@@ -43,17 +47,19 @@ public class FuerzaBruta {
      * @param combinationList: Subconjunto que se revisa si sumado da 0.
      */
     public void combinationUtil(int arrA[], int currSum, int start, List<Integer> combinationList) {
-        if (currSum == 0 && combinationList.size() > 0) {
-            bandera = true; //Se encontró una combinación que sume cero.
-            System.out.println(combinationList);
-            return;
-        }
-        if(abs(currSum) < abs(sumaMenor) && combinationList.size() > 0){ 
+        
+        if(combinationList.size() > 0){
+            if(currSum == 0){
+              sumaMenor = 0;
+              combMasCercana = new ArrayList<>(combinationList);
+              return;
+            }
+            if(abs(currSum) < abs(sumaMenor)){ 
             sumaMenor = currSum;//respaldamos a quien va a ser nuestra nueva referencia para la siguiente comparacion
             combMasCercana = new ArrayList<>(combinationList); // Estamos frente a una combinación más cercana, entonces la guardamos
-            System.out.println("La combinacion: "+combMasCercana+ " Suma: "+sumaMenor);
+            }
         }
-        
+      
 
         for (int i = start; i < arrA.length; i++) { //recorremos todo el arreglo de números
             if (currSum + arrA[i] > 0){ //array is sorted, no need to check further
@@ -66,14 +72,17 @@ public class FuerzaBruta {
         
     }
     public static void main(String[] args) {
-        //int [] arrA = {7,-7,3,5,2,1};
-        int [] arrA = {9,-7,3,5,8,1};
+        int [] arrA = {7,-7,3,5,2,1};
+        //int [] arrA = {9,-7,3,5,8,1};
         FuerzaBruta p = new FuerzaBruta();
         p.findSets(arrA);
-        if (bandera == false){
+        if (sumaMenor != 0){
             System.out.println("NO se encontró una combinación que sume cero.");
             System.out.println("La combinación más cercana a cero es: " +
                 combMasCercana + " la cual suma: " + sumaMenor);
+        }
+        else{
+            System.out.println("La combinación que suma cero es: "+ combMasCercana);
         }
         
     }
