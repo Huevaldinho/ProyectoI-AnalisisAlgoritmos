@@ -18,6 +18,7 @@ public class FuerzaBruta {
     
     //Variable GLOBAL que va guardando la combinación que suma el número más cercano a cero
     static List<Integer> combMasCercana; 
+    static int contarRecursion=0;
     
     //Variable que guarda el número que suma la combinación (respaldo de currensum - GLOBAL)
     static int sumaMenor = 1000; 
@@ -35,6 +36,14 @@ public class FuerzaBruta {
         List<Integer> combinationList = new ArrayList<>();
         combinationUtil(arrA, 0, 0, combinationList);
         //return (combMasCercana.stream().mapToInt(Integer::intValue).toArray()); //convierte la lista en un array sencillo. 
+        if (combMasCercana==null && arrA.length!=0){//Si no hay combinacion y el arreglo si tiene elemento entonces todos son positivos o todos son negativos
+            combMasCercana = new ArrayList<>();//Crea la combinacion para poder meter el elemento mas cercano a  0 (porque esta ordenado).
+            combMasCercana.add(arrA[0]);//Mete el menor del arreglo
+            sumaMenor=arrA[0];//Asigna a la suma solo el primer elemento
+        }else if(combMasCercana==null && arrA.length==0){//Si esto se cumple siginifica que es conjunto vacio
+            combMasCercana=new ArrayList<>();
+            sumaMenor=0;
+        }  
         return combMasCercana;
     }
     
@@ -66,14 +75,20 @@ public class FuerzaBruta {
                 break;
             }
             combinationList.add(arrA[i]);
+            contarRecursion++;
             combinationUtil(arrA, currSum + arrA[i], i + 1, combinationList);
             combinationList.remove(combinationList.size() - 1);
         }
         
     }
     public static void main(String[] args) {
-        int [] arrA = {7,-7,3,5,2,1};
-        //int [] arrA = {9,-7,3,5,8,1};
+        //int [] arrA = {7,-7,3,5,2,1};//6 = 12 recursiones
+        //int [] arrA={-5,-3,-2,5,8};////5 = 14 recursiones
+        //int [] arrA={};// 0 = 0 recursiones
+        //int [] arrA = {-3,-2,5};//3 = 4 recursiones
+        //int [] arrA = {9,-7,3,5,8,1};//6 = 6 recursiones
+        //int [] arrA = {2,3,4,5,10,15,20,30,40,50};
+        int [] arrA = {-20,-30,-40,-5,-10,-15,-20,-30,-40,-50,-1};//11 = 2047 recursiones
         FuerzaBruta p = new FuerzaBruta();
         p.findSets(arrA);
         if (sumaMenor != 0){
@@ -84,6 +99,7 @@ public class FuerzaBruta {
         else{
             System.out.println("La combinación que suma cero es: "+ combMasCercana);
         }
+        System.out.println("Cantidad de recursiones con "+arrA.length+" elementos es: "+contarRecursion);
         
     }
 }
