@@ -194,20 +194,26 @@ public class Dinamico{ // PRUEBAS DE COMBINACIONES DE CODIGO PARA LLEGAR AL DINA
     public static void main(String[] args) {
         int [] a = {7,-7,3,5,2,1};
         int [] b={-5,-3,-2,5,8};
-        int [] c = {9,-7,3,5,8,1};
+        int [] c = {9,-7,3,5,8,1};//Falta este caso
         int d[]={-15,-6,1,2,3,5,7};
         int e[]={-650,-60,-73,-71,-3,50,125,25,7};
+        int f[]={-596,-156,-2156,-52,-123};
+        int g[]={52,12,53,68,62,51,63,6778};
 
-        System.out.println("a");
+        System.out.println("Caso: Existe solucion");
         subsetSum(a);
-        System.out.println("b");
+        System.out.println("Caso: Existe solucion");
         subsetSum(b);
-        System.out.println("c");
+        System.out.println("Caso: Hay negativos y positivos pero suman 0");
         subsetSum(c);
-        System.out.println("d");
+        System.out.println("Caso: Existe solucion");
         subsetSum(d);
-        System.out.println("e");
+        System.out.println("Caso: Existe solucion");
         subsetSum(e);
+        System.out.println("Caso: Todos negativos");
+        subsetSum(f);
+        System.out.println("Caso: Todos positivos");
+        subsetSum(g);
 
         //Falta agregar el caso donde no existe solucion pero hay que dar el subconjunto mas cercano a 0
            
