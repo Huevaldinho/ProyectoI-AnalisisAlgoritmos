@@ -77,7 +77,7 @@ public class Dinamico{ // PRUEBAS DE COMBINACIONES DE CODIGO PARA LLEGAR AL DINA
      * Dado un conjunto de enteros, encontrar subconjunto que sumado de cero.
      * @param array: Arreglo donde se buscara el subconjunto que sumado de cero.
      */
-    public static void subsetSum(int array[]){
+    public void subsetSum(int array[]){
         if (array.length==0){
             System.out.println(subconjunto);
             return;
@@ -200,23 +200,22 @@ public class Dinamico{ // PRUEBAS DE COMBINACIONES DE CODIGO PARA LLEGAR AL DINA
         int f[]={-596,-156,-2156,-52,-123};
         int g[]={52,12,53,68,62,51,63,6778};
 
+        Dinamico dinamico = new Dinamico();
         System.out.println("Caso: Existe solucion");
-        subsetSum(a);
+        dinamico.subsetSum(a);
         System.out.println("Caso: Existe solucion");
-        subsetSum(b);
+        dinamico.subsetSum(b);
         System.out.println("Caso: Hay negativos y positivos pero suman 0");
-        subsetSum(c);
+        dinamico.subsetSum(c);
         System.out.println("Caso: Existe solucion");
-        subsetSum(d);
+        dinamico.subsetSum(d);
         System.out.println("Caso: Existe solucion");
-        subsetSum(e);
+        dinamico.subsetSum(e);
         System.out.println("Caso: Todos negativos");
-        subsetSum(f);
+        dinamico.subsetSum(f);
         System.out.println("Caso: Todos positivos");
-        subsetSum(g);
+        dinamico.subsetSum(g);
 
         //Falta agregar el caso donde no existe solucion pero hay que dar el subconjunto mas cercano a 0
-           
-        
     }
 }

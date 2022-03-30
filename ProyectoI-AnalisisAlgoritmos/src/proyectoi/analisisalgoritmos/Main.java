@@ -4,6 +4,7 @@
  */
 package proyectoi.analisisalgoritmos;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -29,21 +30,29 @@ public class Main{
      * @return Arreglo de tamanno cantidadElementosArray con elementos en el rango [min,max].
      */
     public static int[] generarArrayRandom(int cantidadElementosArray,int min, int max){
-        int []arreglo = new int[cantidadElementosArray];
-        for (int i=0;i<cantidadElementosArray;i++){
-            arreglo[i] = generarRandom(min,max);
+        //int []arreglo = new int[cantidadElementosArray];//De esta forma se pueden repetir numeros
+//        for (int i=0;i<cantidadElementosArray;i++){
+//            arreglo[i] = generarRandom(min,max);
+//        }
+        ArrayList<Integer> arreglo = new ArrayList<>();
+        int i=0;
+        int n;
+        while (i<cantidadElementosArray){
+            n= generarRandom(min,max);
+            if (!arreglo.contains(n)){//Si no esta en la lista lo agrega
+                arreglo.add(n);
+                i++;
+            }//Si no esta continua sin incrementar el ciclo
         }
-        return arreglo;
+        return arreglo.stream().mapToInt(Integer::intValue).toArray();
     }
   
     public static void main(String[] args){
-        System.out.println("Main");
-       //Prueba  de funciones de generar random y arreglo
+        System.out.println("--------------Main--------------");
+        
+        //Prueba dinamico con array random
         int [] array = generarArrayRandom(30,-100,100);
-        for (int i=0;i<array.length;i++){
-            System.out.println(array[i]);
-        }
-        //Falta modificar algoritmo de fuerza bruta
-        //Falta encontrar o hacer el algoritmo dinamico
+        Dinamico dinamico = new Dinamico();
+        dinamico.subsetSum(array);
     }
 }
