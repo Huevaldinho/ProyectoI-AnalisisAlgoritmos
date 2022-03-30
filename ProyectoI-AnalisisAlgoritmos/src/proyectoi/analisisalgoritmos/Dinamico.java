@@ -151,6 +151,51 @@ public class Dinamico{ // PRUEBAS DE COMBINACIONES DE CODIGO PARA LLEGAR AL DINA
         resultado(array,matriz);
     }
     /**
+     * 
+     * @param a: Array con numeros enteros.
+     * @return int[][]: Retorna matriz con negativos y positivos separados. int[0] = Negativos, int[1] = Positivos.
+     */
+    static int[][] separadorPositivosNegativos(int a[]){
+        Arrays.sort(a);//Ordena de menor a mayor para recorrer menos.
+        List<Integer> nega =  new ArrayList<>();//Lista de negativos
+        List<Integer> posi =  new ArrayList<>();//Lista de negativos
+        for (int i=0;i<a.length;i++){//Recorre el arreglo a.
+            if (a[i]<=0)//Si es negativo o 0. Restar o sumar 0 no afecta nada.
+                nega.add(a[i]);//Lo agrega
+            else//Si es positivo
+                posi.add(a[i]);
+        }
+        //Retorna matriz con negativos y positivos separados.
+        return new int[][]{nega.stream().mapToInt(Integer::intValue).toArray(),
+            posi.stream().mapToInt(Integer::intValue).toArray()};
+    }
+    /**
+     * Metodo para obtener el subconjunto que sumado sea mas cercano a cero pero no cero.
+     * @param array: Conjunto base
+     */
+    static void aproximacion(int array []){
+        int menorPositivos = 0;
+        int mayorNegativos = 0;
+        int restaMayorMenor = 0;
+        int [][] separados = separadorPositivosNegativos(array);
+        int [] nega=separados[0];
+        int []posi=separados[1];
+        Arrays.sort(nega);
+        Arrays.sort(posi);
+        menorPositivos = posi[0];
+        mayorNegativos = nega[nega.length-1];
+        restaMayorMenor = menorPositivos+mayorNegativos;//Se suma porque mayorNegativos es negativo o cero.
+        if (abs(menorPositivos)<abs(mayorNegativos)&&abs(menorPositivos)<abs(restaMayorMenor))
+            subconjunto.add(menorPositivos);
+        else if (abs(mayorNegativos)<abs(menorPositivos)&&abs(mayorNegativos)<abs(restaMayorMenor))
+            subconjunto.add(mayorNegativos);
+        else{
+            subconjunto.add(mayorNegativos);
+            subconjunto.add(menorPositivos);
+        }
+            
+    }
+    /**
      * Metodo para leer si existe o no un subconjunto que sumado de 0.
      * @param array: Arreglo del conjunto base.
      * @param matriz: Matriz completa.
@@ -163,9 +208,13 @@ public class Dinamico{ // PRUEBAS DE COMBINACIONES DE CODIGO PARA LLEGAR AL DINA
                 columna=key;
             }
         }
-        //Si no hay solucion salgase
-        if (!matriz[matriz.length-1][columna])
+        //Si no hay solucion se sale
+        //En este caso tenemos que tomar lo mas cercano a 0.
+        //3 Opciones: El menor de los positivos, el mayor de los negativos o la resta de los dos anterioes mencionados
+        if (!matriz[matriz.length-1][columna]){
+            aproximacion(array);
             return;
+        }
         //Empieza desde la ultima fila
         //El ciclo sube de abajo hacia arriba la matriz
         for (int fila=matriz.length-1;fila>=0;fila--){
