@@ -11,73 +11,68 @@ import java.util.List;
 
 /**
  *
- * @author Usuario
+ * @author Sumit Jain
+ * Tomado de: https://algorithms.tutorialhorizon.com/print-all-subsets-of-an-array-with-a-sum-equal-to-zero/
+ * Modificado para guardar el subconjunto que sumado de cero o el mas cercano.
  */
-public class FuerzaBruta {
-    //Tomado de: https://algorithms.tutorialhorizon.com/print-all-subsets-of-an-array-with-a-sum-equal-to-zero/
-    
+public class FuerzaBruta{
     //Variable GLOBAL que va guardando la combinación que suma el número más cercano a cero
     static List<Integer> combMasCercana; 
-    static int contarRecursion=0;
-    
     //Variable que guarda el número que suma la combinación (respaldo de currensum - GLOBAL)
     static int sumaMenor = 1000; 
     //También nos ayudará a saber si en algún momento se encuentra la combinación (sumMenor = 0)
     
-    
     /***
-     * 
-     * @param arrA: Arreglo de numeros en el que se buscara si  hay subconjunto  que sume 0.
+     *  Metodo para verificar que el algoritmo no sea null, de lo contrario llama
+     * al algoritmo de fuerza bruta.
+     * @param array: Arreglo de numeros en el que se buscara si  hay subconjunto  que sume 0.
      * @return combMasCercana: Arreglo de números que suman cero o el número más cercano a cero. 
      */
-    public List<Integer> findSets(int [] arrA){
-        System.out.println("Given Array: " + Arrays.toString(arrA) + ", required sum: " + 0);
-        Arrays.sort(arrA);//Ordena el arreglo
-        List<Integer> combinationList = new ArrayList<>();
-        combinationUtil(arrA, 0, 0, combinationList);
-        if(combMasCercana==null && arrA.length==0){//Si esto se cumple siginifica que es conjunto vacio
+    public List<Integer> findSets(int [] array){
+        System.out.println("Given Array: " + Arrays.toString(array) + ", required sum: " + 0);
+        Arrays.sort(array);//Ordena el arreglo
+        List<Integer> subconjunto = new ArrayList<>();
+        fuerzaBruta(array, 0, 0, subconjunto);
+        if(combMasCercana==null && array.length==0){//Si esto se cumple siginifica que es conjunto vacio
             combMasCercana=new ArrayList<>();
             sumaMenor=0;
         }  
         return combMasCercana;
     }
-    
-
     /**
-     * 
-     * @param arrA: Arreglo de numeros.
-     * @param currSum: Variable que determina si un subconjunto sumado da 0.
-     * @param start: Iterador del arreglo.
-     * @param combinationList: Subconjunto que se revisa si sumado da 0.
+     * Algoritmo que encuentra (si existe) el subconjunto que sumado de cero. Si no
+     * encuentra el subconjunto que sumado se acerca mas a cero.
+     * @param array: Arreglo de numeros.
+     * @param suma: Variable que determina si un subconjunto sumado da 0.
+     * @param iteradorFor: Iterador del arreglo.
+     * @param subconjunto: Subconjunto que se revisa si sumado da 0.
      */
-    public void combinationUtil(int arrA[], int currSum, int start, List<Integer> combinationList) {
-        if(combinationList.size() > 0){
-            if(currSum == 0){
-              sumaMenor = 0;
-              combMasCercana = new ArrayList<>(combinationList);
-              return;
+    public void fuerzaBruta(int array[], int suma, int iteradorFor, List<Integer> subconjunto) {
+        if(!subconjunto.isEmpty()){
+            if(suma == 0){
+                sumaMenor = 0;
+                combMasCercana = new ArrayList<>(subconjunto);
+                return;
             }
-            if(abs(currSum) < abs(sumaMenor)){ 
-            sumaMenor = currSum;//respaldamos a quien va a ser nuestra nueva referencia para la siguiente comparacion
-            combMasCercana = new ArrayList<>(combinationList); // Estamos frente a una combinación más cercana, entonces la guardamos
+            if(abs(suma) < abs(sumaMenor)){ 
+                sumaMenor = suma;//respaldamos a quien va a ser nuestra nueva referencia para la siguiente comparacion
+                combMasCercana = new ArrayList<>(subconjunto); // Estamos frente a una combinación más cercana, entonces la guardamos
             }
         }
-        for (int i = start; i < arrA.length; i++) { //recorremos todo el arreglo de números
-            combinationList.add(arrA[i]);
-            contarRecursion++;
-            combinationUtil(arrA, currSum + arrA[i], i + 1, combinationList);
-            combinationList.remove(combinationList.size() - 1);
+        for (int i = iteradorFor; i < array.length; i++) { //recorremos todo el arreglo de números
+            subconjunto.add(array[i]);
+            fuerzaBruta(array, suma + array[i], i + 1, subconjunto);
+            subconjunto.remove(subconjunto.size() - 1);
         }
-        
     }
     public static void main(String[] args) {
-        int [] arrA = {7,-7,3,5,2,1};//6 = 12 recursiones
-        //int [] arrA={-5,-3,-2,5,8};////5 = 14 recursiones
-        //int [] arrA={};// 0 = 0 recursiones
-        //int [] arrA = {-3,-2,5};//3 = 4 recursiones
-        //int [] arrA = {9,-7,3,5,8,1};//6 = 6 recursiones
+        //int [] arrA = {7,-7,3,5,2,1};
+        //int [] arrA={-5,-3,-2,5,8};
+        //int [] arrA={};
+        //int [] arrA = {-3,-2,5};
+        int [] arrA = {9,-7,3,5,8,1};
         //int [] arrA = {2,3,4,5,10,15,20,30,40,50};
-        //int [] arrA = {-20,-30,-40,-5,-10,-15,-20,-30,-40,-50,-1};//11 = 2047 recursiones
+        //int [] arrA = {-20,-30,-40,-5,-10,-15,-20,-30,-40,-50,-1};
         FuerzaBruta p = new FuerzaBruta();
         p.findSets(arrA);
         if (sumaMenor != 0){
@@ -88,7 +83,5 @@ public class FuerzaBruta {
         else{
             System.out.println("La combinación que suma cero es: "+ combMasCercana);
         }
-        System.out.println("Cantidad de recursiones con "+arrA.length+" elementos es: "+contarRecursion);
-        
     }
 }

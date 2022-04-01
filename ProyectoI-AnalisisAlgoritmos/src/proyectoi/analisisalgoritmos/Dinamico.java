@@ -192,8 +192,7 @@ public class Dinamico{ // PRUEBAS DE COMBINACIONES DE CODIGO PARA LLEGAR AL DINA
         else{
             subconjunto.add(mayorNegativos);
             subconjunto.add(menorPositivos);
-        }
-            
+        }       
     }
     /**
      * Metodo para leer si existe o no un subconjunto que sumado de 0.
