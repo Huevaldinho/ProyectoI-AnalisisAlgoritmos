@@ -15,13 +15,11 @@ import java.util.List;
  * Tomado de: https://algorithms.tutorialhorizon.com/print-all-subsets-of-an-array-with-a-sum-equal-to-zero/
  * Modificado para guardar el subconjunto que sumado de cero o el mas cercano.
  */
-public class FuerzaBruta {
-    //Tomado de: https://algorithms.tutorialhorizon.com/print-all-subsets-of-an-array-with-a-sum-equal-to-zero/
-    
+
+public class FuerzaBruta{
     //Variables GLOBALES para guardar las ASIGNACIONES y COMPARACIONES
     static int asig;
     static int comp;
-public class FuerzaBruta{
     //Variable GLOBAL que va guardando la combinación que suma el número más cercano a cero
     static List<Integer> combMasCercana; 
     //Variable que guarda el número que suma la combinación (respaldo de currensum - GLOBAL)
@@ -37,12 +35,15 @@ public class FuerzaBruta{
     public List<Integer> findSets(int [] array){
         System.out.println("Given Array: " + Arrays.toString(array) + ", required sum: " + 0);
         Arrays.sort(array);//Ordena el arreglo
-        List<Integer> subconjunto = new ArrayList<>();
-        fuerzaBruta(array, 0, 0, subconjunto);
+        List<Integer> subconjunto = new ArrayList<>(); asig++;
+        fuerzaBruta(array, 0, 0, subconjunto); //**Las asignaciones y comparaciones se suman dentro
         if(combMasCercana==null && array.length==0){//Si esto se cumple siginifica que es conjunto vacio
-            combMasCercana=new ArrayList<>();
-            sumaMenor=0;
-        }  
+            combMasCercana = new ArrayList<>();
+            sumaMenor = 0;
+            asig+=2;
+        }
+        comp += 2; //Siempre hace 2 comparaciones, ya sea que sea True o false. 
+        
         return combMasCercana;
     }
     /**
@@ -58,25 +59,32 @@ public class FuerzaBruta{
             if(suma == 0){
                 sumaMenor = 0;
                 combMasCercana = new ArrayList<>(subconjunto);
+                asig +=2;
                 return;
             }
+            comp ++;
             if(abs(suma) < abs(sumaMenor)){ 
                 sumaMenor = suma;//respaldamos a quien va a ser nuestra nueva referencia para la siguiente comparacion
                 combMasCercana = new ArrayList<>(subconjunto); // Estamos frente a una combinación más cercana, entonces la guardamos
+                asig +=2;
             }
+            comp ++;
         }
+        comp ++; //Siempre se va a comparar, sea True o False. 
         for (int i = iteradorFor; i < array.length; i++) { //recorremos todo el arreglo de números
+            comp ++; //Cada vez que el for sea true. 
             subconjunto.add(array[i]);
-            fuerzaBruta(array, suma + array[i], i + 1, subconjunto);
+            fuerzaBruta(array, suma + array[i], i + 1, subconjunto); //asignaciones y comparaciones se suman dentro.
             subconjunto.remove(subconjunto.size() - 1);
         }
+        comp++; //Cada vez que la comparación no se cumpla. 
     }
     public static void main(String[] args) {
         //int [] arrA = {7,-7,3,5,2,1};
         //int [] arrA={-5,-3,-2,5,8};
         //int [] arrA={};
-        //int [] arrA = {-3,-2,5};
-        int [] arrA = {9,-7,3,5,8,1};
+        int [] arrA = {-3,-2,5};
+        //int [] arrA = {9,-7,3,5,8,1};
         //int [] arrA = {2,3,4,5,10,15,20,30,40,50};
         //int [] arrA = {-20,-30,-40,-5,-10,-15,-20,-30,-40,-50,-1};
         FuerzaBruta p = new FuerzaBruta();
@@ -89,7 +97,7 @@ public class FuerzaBruta{
         else{
             System.out.println("La combinación que suma cero es: "+ combMasCercana);
         }
-        System.out.println("Cantidad de recursiones con "+arrA.length+" elementos es: "+contarRecursion);
+        //System.out.println("Cantidad de recursiones con "+arrA.length+" elementos es: "+contarRecursion);
         System.out.println("Cantidad de asignaciones: " + asig);
         System.out.println("Cantidad de comparaciones: " + comp);
     }
