@@ -6,7 +6,7 @@ package proyectoi.analisisalgoritmos;
 
 /**
  *
- * @author Usuario
+ * @author Felipe Obando y Sophya 
  */
 public class ProyectoIAnalisisAlgoritmos {
 

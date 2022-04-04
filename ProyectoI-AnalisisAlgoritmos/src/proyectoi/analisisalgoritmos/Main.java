@@ -9,7 +9,7 @@ import java.util.Random;
 
 /**
  *
- * @author Usuario
+ * @author Felipe Obando y Sophya 
  */
 
 public class Main{
