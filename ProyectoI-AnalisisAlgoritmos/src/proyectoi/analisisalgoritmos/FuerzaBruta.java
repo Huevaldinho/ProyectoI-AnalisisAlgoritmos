@@ -16,6 +16,9 @@ import java.util.List;
 public class FuerzaBruta {
     //Tomado de: https://algorithms.tutorialhorizon.com/print-all-subsets-of-an-array-with-a-sum-equal-to-zero/
     
+    //Variables GLOBALES para guardar las ASIGNACIONES y COMPARACIONES
+    static int asig;
+    static int comp;
     //Variable GLOBAL que va guardando la combinación que suma el número más cercano a cero
     static List<Integer> combMasCercana; 
     static int contarRecursion=0;
@@ -89,6 +92,7 @@ public class FuerzaBruta {
             System.out.println("La combinación que suma cero es: "+ combMasCercana);
         }
         System.out.println("Cantidad de recursiones con "+arrA.length+" elementos es: "+contarRecursion);
-        
+        System.out.println("Cantidad de asignaciones: " + asig);
+        System.out.println("Cantidad de comparaciones: " + comp);
     }
 }
