@@ -33,17 +33,23 @@ public class FuerzaBruta{
      * @return combMasCercana: Arreglo de números que suman cero o el número más cercano a cero. 
      */
     public List<Integer> findSets(int [] array){
-        System.out.println("Given Array: " + Arrays.toString(array) + ", required sum: " + 0);
         Arrays.sort(array);//Ordena el arreglo
-        List<Integer> subconjunto = new ArrayList<>(); asig++;
-        fuerzaBruta(array, 0, 0, subconjunto); //**Las asignaciones y comparaciones se suman dentro
+        System.out.println("------Algoritmo Fuerza Bruta------");
+        System.out.println("Conjunto base: " + Arrays.toString(array));
+        System.out.println("Cantidad de elementos: "+array.length);
+        List<Integer> subconjunto = new ArrayList<>();
+        long startTime = System.currentTimeMillis();
+        fuerzaBruta(array, 0, 0, subconjunto); 
+        long endTime = System.currentTimeMillis() - startTime; 
+        System.out.println("Tiempo total: "+endTime);
         if(combMasCercana==null && array.length==0){//Si esto se cumple siginifica que es conjunto vacio
             combMasCercana = new ArrayList<>();
             sumaMenor = 0;
-            asig+=2;
         }
-        comp += 2; //Siempre hace 2 comparaciones, ya sea que sea True o false. 
         
+        System.out.println("Subconjunto encontrado: "+ combMasCercana);
+        System.out.println("Asignaciones: "+asig);
+        System.out.println("Compraciones: "+comp);
         return combMasCercana;
     }
     /**
@@ -60,7 +66,7 @@ public class FuerzaBruta{
                 sumaMenor = 0;
                 combMasCercana = new ArrayList<>(subconjunto);
                 asig +=2;
-                return;
+                //return;
             }
             comp ++;
             if(abs(suma) < abs(sumaMenor)){ 
@@ -83,22 +89,24 @@ public class FuerzaBruta{
         //int [] arrA = {7,-7,3,5,2,1};
         //int [] arrA={-5,-3,-2,5,8};
         //int [] arrA={};
-        int [] arrA = {-3,-2,5};
+        int [] arrA = {1,2,3,4,5,6,7,8,9,10,-1,-2,-3,-4,-5,-6,-7,-8,-9,-10};//{-500,-573,-584,-654,-745,344,-123,-574,-873,125,654,626,126,753,67,854,647,727,976,312};
         //int [] arrA = {9,-7,3,5,8,1};
         //int [] arrA = {2,3,4,5,10,15,20,30,40,50};
         //int [] arrA = {-20,-30,-40,-5,-10,-15,-20,-30,-40,-50,-1};
         FuerzaBruta p = new FuerzaBruta();
+        
         p.findSets(arrA);
-        if (sumaMenor != 0){
-            System.out.println("NO se encontró una combinación que sume cero.");
-            System.out.println("La combinación más cercana a cero es: " +
-                combMasCercana + " la cual suma: " + sumaMenor);
-        }
-        else{
-            System.out.println("La combinación que suma cero es: "+ combMasCercana);
-        }
-        //System.out.println("Cantidad de recursiones con "+arrA.length+" elementos es: "+contarRecursion);
-        System.out.println("Cantidad de asignaciones: " + asig);
-        System.out.println("Cantidad de comparaciones: " + comp);
+        
+//        if (sumaMenor != 0){
+//            System.out.println("NO se encontró una combinación que sume cero.");
+//            System.out.println("La combinación más cercana a cero es: " +
+//                combMasCercana + " la cual suma: " + sumaMenor);
+//        }
+//        else{
+//            System.out.println("La combinación que suma cero es: "+ combMasCercana);
+//        }
+//        //System.out.println("Cantidad de recursiones con "+arrA.length+" elementos es: "+contarRecursion);
+//        System.out.println("Cantidad de asignaciones: " + asig);
+//        System.out.println("Cantidad de comparaciones: " + comp);
     }
 }
