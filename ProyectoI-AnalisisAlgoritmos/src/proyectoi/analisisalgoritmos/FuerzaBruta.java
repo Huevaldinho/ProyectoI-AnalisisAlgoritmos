@@ -78,12 +78,16 @@ public class FuerzaBruta{
         }
         comp ++; //Siempre se va a comparar, sea True o False. 
         for (int i = iteradorFor; i < array.length; i++) { //recorremos todo el arreglo de números
+            asig += 2; //asignación del for (i) y del incremento
             comp ++; //Cada vez que el for sea true. 
-            subconjunto.add(array[i]);
+            subconjunto.add(array[i]); 
+            asig ++; //Por agregar un elemento al subconjunto
             fuerzaBruta(array, suma + array[i], i + 1, subconjunto); //asignaciones y comparaciones se suman dentro.
             subconjunto.remove(subconjunto.size() - 1);
+            asig ++; //Al quitar un elemento del subconjunto
         }
         comp++; //Cada vez que la comparación no se cumpla. 
+        asig += 1; //Cada vez que la comparación no se cumpla, igual se hace la asignación. 
     }
     public static void main(String[] args) {
         //int [] arrA = {7,-7,3,5,2,1};

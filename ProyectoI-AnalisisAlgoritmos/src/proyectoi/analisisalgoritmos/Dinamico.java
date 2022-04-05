@@ -124,11 +124,12 @@ public class Dinamico{
     static void conseguirSubconjunto(int array[],boolean [][] matriz,int columnasTotales){
         long startTime = System.currentTimeMillis();
         int columnaBuscada=0;
-        asig+=1;
+        asig++;
         //La primera fila se trata por aparte porque no se puede subir una fila como en las demas.
         for (int k=0;k<matriz[0].length;k++){
+            asig += 2; //asignación e incremento del for
             if (valorColumna.get(k)==array[0]){
-                matriz[0][k]=true;
+                matriz[0][k]= true;
                 asig+=1;//true
                 break;
             }
@@ -136,7 +137,9 @@ public class Dinamico{
         }
         comp+=1;//false for
         for (int fila=1;fila<matriz.length;fila++){//Recorremos todas las filas
+            asig += 2; //asignación del for (i) y del incremento
             for (int columna=0;columna<columnasTotales;columna++){//Recorremos las columnas de cada fila
+                asig += 2; //asignación del for (i) y del incremento
                 comp+=1;//for true
                 //La primera fila se trata diferente porque no se puede subir y da error de index
                 //Valor de columna == valor del arreglo en el index de la fila
@@ -148,6 +151,7 @@ public class Dinamico{
                 comp+=1;//if
                 //key es el index de las columnas
                 for (int key : valorColumna.keySet()){//Llaves del hashmap
+                    asig += 2; //asignación del for (i) y del incremento
                     comp+=1;//for true
                     //valorColumna.get(key) valor de esa columna
                     //si el valor es igual al resultado de : valor de columna - valor del array en index fila
@@ -158,7 +162,9 @@ public class Dinamico{
                     }
                     comp+=1;//if
                 }
+                asig ++; //La asignación del for (i) se hace aunque la comparación sea falsa
                 comp+=1;//for false
+                
                 //Elemento array mayor o menor escoje la columna de arriba o la resta entre el valor de columna y el valor del array en ese indice
                 //para "saltar"
                 //Celda actual = celda arriba o matriz en fila de arriba en columna = valor columna - valor array en index fila
@@ -166,8 +172,10 @@ public class Dinamico{
                 asig+=1;
             }
             comp+=1;//fase for
+            asig ++; //asignación del for (i) cuando es falso.
         }
         comp+=1;//false for
+        asig += 1; //asignación del for (i) cuando es falso
         //Lee matriz
         long endTime = System.currentTimeMillis() - startTime; 
         System.out.println("Tiempo total: "+endTime);
