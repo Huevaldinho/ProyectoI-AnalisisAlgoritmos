@@ -1,13 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package proyectoi.analisisalgoritmos;
 
 import static java.lang.Math.abs;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.IntStream;
 
 /**
  *
@@ -18,14 +16,15 @@ import java.util.List;
 
 public class FuerzaBruta{
     //Variables GLOBALES para guardar las ASIGNACIONES y COMPARACIONES
-    static int asig;
-    static int comp;
+    static long asig;
+    static long comp;
     //Variable GLOBAL que va guardando la combinación que suma el número más cercano a cero
     static List<Integer> combMasCercana; 
     //Variable que guarda el número que suma la combinación (respaldo de currensum - GLOBAL)
     static int sumaMenor = 1000; 
     //También nos ayudará a saber si en algún momento se encuentra la combinación (sumMenor = 0)
-
+    static long startTime;
+    static long endTime;
     public FuerzaBruta(){
     }    
     /***
@@ -40,18 +39,22 @@ public class FuerzaBruta{
         System.out.println("Conjunto base: " + Arrays.toString(array));
         System.out.println("Cantidad de elementos: "+array.length);
         List<Integer> subconjunto = new ArrayList<>();
-        long startTime = System.currentTimeMillis();
+        
+        startTime = System.currentTimeMillis();
         fuerzaBruta(array, 0, 0, subconjunto); 
-        long endTime = System.currentTimeMillis() - startTime; 
+        endTime = System.currentTimeMillis() - startTime; 
         System.out.println("Tiempo total: "+endTime);
+        System.out.println("Equivalente a "+ (double)endTime/1000+" segundos.");
+        
         if(combMasCercana==null && array.length==0){//Si esto se cumple siginifica que es conjunto vacio
             combMasCercana = new ArrayList<>();
             sumaMenor = 0;
         }
-        
+        if (IntStream.of(combMasCercana.stream().mapToInt(i -> i).toArray()).sum()!=0)
+            System.out.println("No hay subconjunto que sumado de cero, el mas aproximado es: ");
         System.out.println("Subconjunto encontrado: "+ combMasCercana);
         System.out.println("Asignaciones: "+asig);
-        System.out.println("Compraciones: "+comp);
+        System.out.println("Compraciones: "+comp+"\n");
         return combMasCercana;
     }
     /**

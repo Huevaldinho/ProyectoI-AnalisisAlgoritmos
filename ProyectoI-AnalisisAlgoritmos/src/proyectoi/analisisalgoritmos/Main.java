@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package proyectoi.analisisalgoritmos;
 
 import java.util.ArrayList;
@@ -50,9 +47,17 @@ public class Main{
     public static void main(String[] args){
         
         //Prueba dinamico con array random
-        int [] array = generarArrayRandom(2,-100,100);
-        //int [] array = {-1,2,3,4};
+        int [] array = generarArrayRandom(7,-100,100);
+        //int [] array = {-1,2,3,4};//error aproximacion, no es la mas cercana a 0
+        //int [] array = {1,-2,-3,-4};
+        //int [] array = {-5,-3,1,2,3,4};
+        //int [] array={-2,2};
+        //int [] array={-3,1};
+        //int [] array={-25,-22,-12,1,3,6,10,15};
         Dinamico dinamico = new Dinamico();
         dinamico.subsetSum(array);
+        
+        FuerzaBruta fb= new FuerzaBruta();
+        fb.findSets(array);
     }
 }
