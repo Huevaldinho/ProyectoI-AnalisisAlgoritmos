@@ -25,7 +25,9 @@ public class FuerzaBruta{
     //Variable que guarda el número que suma la combinación (respaldo de currensum - GLOBAL)
     static int sumaMenor = 1000; 
     //También nos ayudará a saber si en algún momento se encuentra la combinación (sumMenor = 0)
-    
+
+    public FuerzaBruta(){
+    }    
     /***
      *  Metodo para verificar que el algoritmo no sea null, de lo contrario llama
      * al algoritmo de fuerza bruta.
@@ -61,6 +63,7 @@ public class FuerzaBruta{
      * @param subconjunto: Subconjunto que se revisa si sumado da 0.
      */
     public void fuerzaBruta(int array[], int suma, int iteradorFor, List<Integer> subconjunto) {
+        asig+=4;//parametros
         if(!subconjunto.isEmpty()){
             if(suma == 0){
                 sumaMenor = 0;
@@ -77,8 +80,9 @@ public class FuerzaBruta{
             comp ++;
         }
         comp ++; //Siempre se va a comparar, sea True o False. 
+        asig += 1;//declaracion i for
         for (int i = iteradorFor; i < array.length; i++) { //recorremos todo el arreglo de números
-            asig += 2; //asignación del for (i) y del incremento
+            asig += 1; //incremento de i
             comp ++; //Cada vez que el for sea true. 
             subconjunto.add(array[i]); 
             asig ++; //Por agregar un elemento al subconjunto
@@ -87,30 +91,5 @@ public class FuerzaBruta{
             asig ++; //Al quitar un elemento del subconjunto
         }
         comp++; //Cada vez que la comparación no se cumpla. 
-        asig += 1; //Cada vez que la comparación no se cumpla, igual se hace la asignación. 
-    }
-    public static void main(String[] args) {
-        //int [] arrA = {7,-7,3,5,2,1};
-        //int [] arrA={-5,-3,-2,5,8};
-        //int [] arrA={};
-        int [] arrA = {1,2,3,4,5,6,7,8,9,10,-1,-2,-3,-4,-5,-6,-7,-8,-9,-10};//{-500,-573,-584,-654,-745,344,-123,-574,-873,125,654,626,126,753,67,854,647,727,976,312};
-        //int [] arrA = {9,-7,3,5,8,1};
-        //int [] arrA = {2,3,4,5,10,15,20,30,40,50};
-        //int [] arrA = {-20,-30,-40,-5,-10,-15,-20,-30,-40,-50,-1};
-        FuerzaBruta p = new FuerzaBruta();
-        
-        p.findSets(arrA);
-        
-//        if (sumaMenor != 0){
-//            System.out.println("NO se encontró una combinación que sume cero.");
-//            System.out.println("La combinación más cercana a cero es: " +
-//                combMasCercana + " la cual suma: " + sumaMenor);
-//        }
-//        else{
-//            System.out.println("La combinación que suma cero es: "+ combMasCercana);
-//        }
-//        //System.out.println("Cantidad de recursiones con "+arrA.length+" elementos es: "+contarRecursion);
-//        System.out.println("Cantidad de asignaciones: " + asig);
-//        System.out.println("Cantidad de comparaciones: " + comp);
     }
 }

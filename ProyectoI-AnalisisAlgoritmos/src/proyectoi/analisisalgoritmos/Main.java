@@ -48,10 +48,10 @@ public class Main{
     }
   
     public static void main(String[] args){
-        System.out.println("--------------Main--------------");
         
         //Prueba dinamico con array random
-        int [] array = generarArrayRandom(30,-100,100);
+        int [] array = generarArrayRandom(2,-100,100);
+        //int [] array = {-1,2,3,4};
         Dinamico dinamico = new Dinamico();
         dinamico.subsetSum(array);
     }

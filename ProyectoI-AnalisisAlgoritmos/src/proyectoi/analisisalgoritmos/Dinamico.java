@@ -81,16 +81,13 @@ public class Dinamico{
      * @param array: Arreglo donde se buscara el subconjunto que sumado de cero.
      */
     public void subsetSum(int array[]){
-        
+        System.out.println("------Algoritmo Programacion Dinamica------");
+        System.out.println("Conjunto base: " + Arrays.toString(array));
+        System.out.println("Cantidad de elementos: "+array.length);
         if (array.length==0){
             System.out.println(subconjunto);
             return;
         }
-        //Incicia variables
-        sumaPositivos=0;
-        sumaNegativos=0;
-        valorColumna = new HashMap<>(); 
-        subconjunto = new ArrayList<>();
         Arrays.sort(array);//Lo ordena y toma el mas menor
         sumarNumeros(array);
         //Si no hay negativos, tome el menor de los positivos (el arreglo esta ordenado de menor a mayor)
@@ -105,9 +102,6 @@ public class Dinamico{
             //Asignar valores de columnas en el HashMap
             asignarValoresColumnas(numeroColumnas);
             //Empieza el algoritmo
-            System.out.println("------Algoritmo Programacion Dinamica------");
-            System.out.println("Conjunto base: " + Arrays.toString(array));
-            System.out.println("Cantidad de elementos: "+array.length);
             conseguirSubconjunto(array,matriz,numeroColumnas);
         
         }
@@ -122,12 +116,14 @@ public class Dinamico{
      * @param columnasTotales: Numero total de columnas de matriz.
      */
     static void conseguirSubconjunto(int array[],boolean [][] matriz,int columnasTotales){
+        asig+=3;//parametros
         long startTime = System.currentTimeMillis();
         int columnaBuscada=0;
         asig++;
         //La primera fila se trata por aparte porque no se puede subir una fila como en las demas.
+        asig += 1;//asignacion del k en el for
         for (int k=0;k<matriz[0].length;k++){
-            asig += 2; //asignación e incremento del for
+            asig += 1;//incremento del for
             if (valorColumna.get(k)==array[0]){
                 matriz[0][k]= true;
                 asig+=1;//true
@@ -136,11 +132,15 @@ public class Dinamico{
             comp+=2;//if y for true
         }
         comp+=1;//false for
+        asig += 1;//asignacion de fila en el for
         for (int fila=1;fila<matriz.length;fila++){//Recorremos todas las filas
-            asig += 2; //asignación del for (i) y del incremento
+            asig += 1;//del incremento de la fila
+            comp+=1;//for fila true
+            
+            asig += 1;//asignación de columna del for
             for (int columna=0;columna<columnasTotales;columna++){//Recorremos las columnas de cada fila
-                asig += 2; //asignación del for (i) y del incremento
-                comp+=1;//for true
+                asig += 1; //del incremento de la columna
+                comp+=1;//for columna true
                 //La primera fila se trata diferente porque no se puede subir y da error de index
                 //Valor de columna == valor del arreglo en el index de la fila
                 if (valorColumna.get(columna)==array[fila]){
@@ -148,10 +148,12 @@ public class Dinamico{
                     asig+=1;//true
                     continue;
                 }
-                comp+=1;//if
+                comp+=1;//if valorColumna
+                
+                asig += 1;//declaracion for key
                 //key es el index de las columnas
                 for (int key : valorColumna.keySet()){//Llaves del hashmap
-                    asig += 2; //asignación del for (i) y del incremento
+                    asig += 1; //del incremento
                     comp+=1;//for true
                     //valorColumna.get(key) valor de esa columna
                     //si el valor es igual al resultado de : valor de columna - valor del array en index fila
@@ -162,8 +164,7 @@ public class Dinamico{
                     }
                     comp+=1;//if
                 }
-                asig ++; //La asignación del for (i) se hace aunque la comparación sea falsa
-                comp+=1;//for false
+                comp+=1;//for key false
                 
                 //Elemento array mayor o menor escoje la columna de arriba o la resta entre el valor de columna y el valor del array en ese indice
                 //para "saltar"
@@ -171,11 +172,9 @@ public class Dinamico{
                 matriz[fila][columna] = matriz[fila-1][columna]||matriz[fila-1][columnaBuscada];
                 asig+=1;
             }
-            comp+=1;//fase for
-            asig ++; //asignación del for (i) cuando es falso.
+            comp+=1;//fase for columna
         }
-        comp+=1;//false for
-        asig += 1; //asignación del for (i) cuando es falso
+        comp+=1;//false for fila
         //Lee matriz
         long endTime = System.currentTimeMillis() - startTime; 
         System.out.println("Tiempo total: "+endTime);
@@ -211,14 +210,16 @@ public class Dinamico{
         int [][] separados = separadorPositivosNegativos(array);
         int [] nega=separados[0];
         int []posi=separados[1];
-        Arrays.sort(nega);
-        Arrays.sort(posi);
+        Arrays.sort(nega);//Numeros negativos
+        Arrays.sort(posi);//Numeros positivos
         menorPositivos = posi[0];
+        System.out.println("Menor positivo: "+menorPositivos);
         mayorNegativos = nega[nega.length-1];
+        System.out.println("Mayor negativo: "+mayorNegativos);
         restaMayorMenor = menorPositivos+mayorNegativos;//Se suma porque mayorNegativos es negativo o cero.
-        if (abs(menorPositivos)<abs(mayorNegativos)&&abs(menorPositivos)<abs(restaMayorMenor))
+        if (abs(menorPositivos)<abs(mayorNegativos) && abs(menorPositivos)<abs(restaMayorMenor))
             subconjunto.add(menorPositivos);
-        else if (abs(mayorNegativos)<abs(menorPositivos)&&abs(mayorNegativos)<abs(restaMayorMenor))
+        else if (abs(mayorNegativos)<abs(menorPositivos) && abs(mayorNegativos)<abs(restaMayorMenor))
             subconjunto.add(mayorNegativos);
         else{
             subconjunto.add(mayorNegativos);
@@ -241,19 +242,20 @@ public class Dinamico{
         //Si no hay solucion se sale
         //En este caso tenemos que tomar lo mas cercano a 0.
         //3 Opciones: El menor de los positivos, el mayor de los negativos o la resta de los dos anterioes mencionados
-        if (!matriz[matriz.length-1][columna]){
+        if (matriz[matriz.length-1][columna]==false){
             aproximacion(array);
             return;
         }
         //Empieza desde la ultima fila
         //El ciclo sube de abajo hacia arriba la matriz
         for (int fila=matriz.length-1;fila>=0;fila--){
-            if(fila==0){
+            if(fila==0&& columna>=0 ){//
                 if (matriz[fila][columna]){
                     subconjunto.add(array[fila]);
                 }
-                break;
             }
+            else if (fila==0)//la columna es negativa
+                break;
             if(!matriz[fila-1][columna]){//Celda de arriba es false. Si la celda de arriba es true no se hace nada
                 subconjunto.add(array[fila]);//Agrego al elemento donde estoy parado en la fila
                 columna = valorColumna.get(columna) - array[fila];//Este es el valor de la columna dodne tengo que ir
@@ -269,25 +271,5 @@ public class Dinamico{
                     return;
             }   
         }   
-    }
-    public static void main(String[] args) {
-//        int [] a = {7,-7,3,5,2,1};
-//        int [] b={-5,-3,-2,5,8};
-//        int [] c = {9,-7,3,5,8,1};//Falta este caso
-//        int d[]={-15,-6,1,2,3,5,7};
-        //int e[]={-650,-60,-73,-71,-3,50,125,25,7};
-        int e[]={1,2,3,4,5,6,7,8,9,10,-1,-2,-3,-4,-5,-6,-7,-8,-9,-10};//{-500,-573,-584,-654,-745,344,-123,-574,-873,125,654,626,126,753,67,854,647,727,976,312};
-//        int f[]={-596,-156,-2156,-52,-123};
-//        int g[]={52,12,53,68,62,51,63,6778};
-//        int h[]={3,-3};
-
-        Dinamico dinamico = new Dinamico();
-        
-        dinamico.subsetSum(e);
-        
-        
-
-
-        //Falta agregar el caso donde no existe solucion pero hay que dar el subconjunto mas cercano a 0
     }
 }
