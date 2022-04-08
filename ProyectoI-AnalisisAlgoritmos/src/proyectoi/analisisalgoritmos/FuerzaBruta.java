@@ -40,11 +40,13 @@ public class FuerzaBruta{
         System.out.println("Cantidad de elementos: "+array.length);
         List<Integer> subconjunto = new ArrayList<>();
         
-        startTime = System.currentTimeMillis();
+        startTime = System.nanoTime();
         fuerzaBruta(array, 0, 0, subconjunto); 
-        endTime = System.currentTimeMillis() - startTime; 
+        endTime = System.nanoTime() - startTime; 
         System.out.println("Tiempo total: "+endTime);
-        System.out.println("Equivalente a "+ (double)endTime/1000+" segundos.");
+        //System.out.printf("%nTiempo total es %.6f: ", endTime);
+ // 8.528E-4 segundos. 1000000000
+        System.out.println("Equivalente a "+ (double)endTime/1E+9+" segundos.");
         
         if(combMasCercana==null && array.length==0){//Si esto se cumple siginifica que es conjunto vacio
             combMasCercana = new ArrayList<>();
