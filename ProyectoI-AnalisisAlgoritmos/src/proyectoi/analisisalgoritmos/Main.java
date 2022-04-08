@@ -47,9 +47,9 @@ public class Main{
     public static void main(String[] args){
         
         //Prueba dinamico con array random
-        int [] array = generarArrayRandom(7,-100,100);
+        //int [] array = generarArrayRandom(7,-100,100);
         //int [] array = {-1,2,3,4};//error aproximacion, no es la mas cercana a 0
-        //int [] array = {1,-2,-3,-4};
+        int [] array = {1,-2,-3,-4};
         //int [] array = {-5,-3,1,2,3,4};
         //int [] array={-2,2};
         //int [] array={-3,1};

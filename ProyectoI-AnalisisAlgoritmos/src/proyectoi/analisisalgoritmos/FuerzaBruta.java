@@ -43,10 +43,11 @@ public class FuerzaBruta{
         startTime = System.nanoTime();
         fuerzaBruta(array, 0, 0, subconjunto); 
         endTime = System.nanoTime() - startTime; 
-        System.out.println("Tiempo total: "+endTime);
-        //System.out.printf("%nTiempo total es %.6f: ", endTime);
- // 8.528E-4 segundos. 1000000000
-        System.out.println("Equivalente a "+ (double)endTime/1E+9+" segundos.");
+        System.out.println("Tiempo total: "+endTime + " nanosegundos.");
+        //Para que no muestre el número como 4E, 6E...etc (Imprime 6 decimales)
+        System.out.printf("Equivalente a %.7f", (double)endTime/1000000000);
+        System.out.println(" segundos.");
+        //System.out.println("Equivalente a "+ (double)endTime/1000000000+" segundos.");
         
         if(combMasCercana==null && array.length==0){//Si esto se cumple siginifica que es conjunto vacio
             combMasCercana = new ArrayList<>();
