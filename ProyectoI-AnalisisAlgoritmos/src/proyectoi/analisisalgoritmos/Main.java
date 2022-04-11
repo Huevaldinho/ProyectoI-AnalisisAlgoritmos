@@ -12,6 +12,8 @@ import java.util.Random;
 public class Main{
     //static FuerzaBruta instanciaFuerzaBruta;
     static Dinamico instanciaProgramacionDinamica;
+    static FuerzaBruta instanciaFuerzaBrutaQuemado;
+    static FuerzaBruta instanciaFuerzaBrutaAleatorio;
     /**
      *  
      * @param min: Numero menor para generar el random.
@@ -47,16 +49,23 @@ public class Main{
     }
   
     public static void main(String[] args){
+        //variables para todas las pruebas
+        int [] arrayAleatorio;
+        
+        
         //Cantidad numero en el conjunto: 3
+        
+        System.out.println("3 ELEMENTOS");
         int [] array = {-3,1,2};
-        int [] arrayAleatorio3 = generarArrayRandom(3,-100,100);
+        arrayAleatorio = generarArrayRandom(3,-100,100);
+        
         System.out.println("QUEMADO FUERZA BRUTA: 3");
-        FuerzaBruta instanciaFuerzaBrutaQuemado3 = new FuerzaBruta();
-        instanciaFuerzaBrutaQuemado3.findSets(array);
+        instanciaFuerzaBrutaQuemado = new FuerzaBruta();
+        instanciaFuerzaBrutaQuemado.findSets(array);
         
         System.out.println("ALEATORIO FUERZA BRUTA: 3");
-        FuerzaBruta instanciaFuerzaBrutaAleatorio3 = new FuerzaBruta();
-        instanciaFuerzaBrutaAleatorio3.findSets(arrayAleatorio3);
+        instanciaFuerzaBrutaAleatorio = new FuerzaBruta();
+        instanciaFuerzaBrutaAleatorio.findSets(arrayAleatorio);
         
         System.out.println("QUEMADO DINAMICO: 3");
         instanciaProgramacionDinamica = new Dinamico();
@@ -64,18 +73,175 @@ public class Main{
         
         System.out.println("ALEATORIO DINAMICO: 3");
         instanciaProgramacionDinamica = new Dinamico();
-        instanciaProgramacionDinamica.findSets(arrayAleatorio3);
+        instanciaProgramacionDinamica.findSets(arrayAleatorio);
+        System.out.println("-------------------------------------");
+        
         //Cantidad numero en el conjunto: 4
+        System.out.println("4 ELEMENTOS");
+        
+        int [] array4 = {-8,3,2,5};
+        arrayAleatorio = generarArrayRandom(4,-100,100);
+        
+        System.out.println("QUEMADO FUERZA BRUTA: 4");
+        instanciaFuerzaBrutaQuemado = new FuerzaBruta();
+        instanciaFuerzaBrutaQuemado.findSets(array4);
+        
+        System.out.println("ALEATORIO FUERZA BRUTA: 4");
+        instanciaFuerzaBrutaAleatorio = new FuerzaBruta();
+        instanciaFuerzaBrutaAleatorio.findSets(arrayAleatorio);
+        
+        System.out.println("QUEMADO DINAMICO: 4");
+        instanciaProgramacionDinamica = new Dinamico();
+        instanciaProgramacionDinamica.findSets(array4);
+        
+        System.out.println("ALEATORIO DINAMICO: 4");
+        instanciaProgramacionDinamica = new Dinamico();
+        instanciaProgramacionDinamica.findSets(arrayAleatorio);
+        System.out.println("-------------------------------------");
+       
         //Cantidad numero en el conjunto: 5
+        
         //Cantidad numero en el conjunto: 6
+        System.out.println("6 ELEMENTOS");
+        
+        int [] array6 = {7,2,8,-13,-3,-1};
+        arrayAleatorio = generarArrayRandom(6,-100,100);
+        
+        System.out.println("QUEMADO FUERZA BRUTA: 6");
+        instanciaFuerzaBrutaQuemado = new FuerzaBruta();
+        instanciaFuerzaBrutaQuemado.findSets(array6);
+        
+        System.out.println("ALEATORIO FUERZA BRUTA: 6");
+        instanciaFuerzaBrutaAleatorio = new FuerzaBruta();
+        instanciaFuerzaBrutaAleatorio.findSets(arrayAleatorio);
+        
+        System.out.println("QUEMADO DINAMICO: 6");
+        instanciaProgramacionDinamica = new Dinamico();
+        instanciaProgramacionDinamica.findSets(array6);
+        
+        System.out.println("ALEATORIO DINAMICO: 6");
+        instanciaProgramacionDinamica = new Dinamico();
+        instanciaProgramacionDinamica.findSets(arrayAleatorio);
+        System.out.println("-------------------------------------");
         //Cantidad numero en el conjunto: 7
+        
         //Cantidad numero en el conjunto: 10
+        System.out.println("10 ELEMENTOS");
+        
+        int [] array10 = {8,2,3,9,-12,-6,-4};
+        arrayAleatorio = generarArrayRandom(10,-100,100);
+        
+        System.out.println("QUEMADO FUERZA BRUTA: 10");
+        instanciaFuerzaBrutaQuemado = new FuerzaBruta();
+        instanciaFuerzaBrutaQuemado.findSets(array10);
+        
+        System.out.println("ALEATORIO FUERZA BRUTA: 10");
+        instanciaFuerzaBrutaAleatorio = new FuerzaBruta();
+        instanciaFuerzaBrutaAleatorio.findSets(arrayAleatorio);
+        
+        System.out.println("QUEMADO DINAMICO: 10");
+        instanciaProgramacionDinamica = new Dinamico();
+        instanciaProgramacionDinamica.findSets(array10);
+        
+        System.out.println("ALEATORIO DINAMICO: 10");
+        instanciaProgramacionDinamica = new Dinamico();
+        instanciaProgramacionDinamica.findSets(arrayAleatorio);
+        System.out.println("-------------------------------------");
         //Cantidad numero en el conjunto: 11
+        
         //Cantidad numero en el conjunto: 12
+        System.out.println("12 ELEMENTOS");
+        
+        int [] array12 = {-4,-5,-2,3,6,7,10,13,17,-90,20,30}; //-4-2,6
+        arrayAleatorio = generarArrayRandom(12,-100,100);
+        
+        System.out.println("QUEMADO FUERZA BRUTA: 12");
+        instanciaFuerzaBrutaQuemado = new FuerzaBruta();
+        instanciaFuerzaBrutaQuemado.findSets(array12);
+        
+        System.out.println("ALEATORIO FUERZA BRUTA: 12");
+        instanciaFuerzaBrutaAleatorio = new FuerzaBruta();
+        instanciaFuerzaBrutaAleatorio.findSets(arrayAleatorio);
+        
+        System.out.println("QUEMADO DINAMICO: 12");
+        instanciaProgramacionDinamica = new Dinamico();
+        instanciaProgramacionDinamica.findSets(array12);
+        
+        System.out.println("ALEATORIO DINAMICO: 12");
+        instanciaProgramacionDinamica = new Dinamico();
+        instanciaProgramacionDinamica.findSets(arrayAleatorio);
+        System.out.println("-------------------------------------");
         //Cantidad numero en el conjunto: 13
+        
         //Cantidad numero en el conjunto: 14
+                System.out.println("14 ELEMENTOS");
+        
+        int [] array14 = {7,12,21,-4,-2,-1,-3,5,8,9,10,11,-13,-18};
+        arrayAleatorio = generarArrayRandom(14,-100,100);
+        
+        System.out.println("QUEMADO FUERZA BRUTA: 14");
+        instanciaFuerzaBrutaQuemado = new FuerzaBruta();
+        instanciaFuerzaBrutaQuemado.findSets(array14);
+        
+        System.out.println("ALEATORIO FUERZA BRUTA: 14");
+        instanciaFuerzaBrutaAleatorio = new FuerzaBruta();
+        instanciaFuerzaBrutaAleatorio.findSets(arrayAleatorio);
+        
+        System.out.println("QUEMADO DINAMICO: 14");
+        instanciaProgramacionDinamica = new Dinamico();
+        instanciaProgramacionDinamica.findSets(array14);
+        
+        System.out.println("ALEATORIO DINAMICO: 14");
+        instanciaProgramacionDinamica = new Dinamico();
+        instanciaProgramacionDinamica.findSets(arrayAleatorio);
+        System.out.println("-------------------------------------");
         //Cantidad numero en el conjunto: 15
+        
         //Cantidad numero en el conjunto: 20
+        System.out.println("20 ELEMENTOS");
+        
+        int [] array20 = {11,2,13,4,16,8,32,23,9,-20,-1,-5,-18,-45,-24,-7,17,19,-30,-21};
+        arrayAleatorio = generarArrayRandom(20,-100,100);
+        
+        System.out.println("QUEMADO FUERZA BRUTA: 20");
+        instanciaFuerzaBrutaQuemado = new FuerzaBruta();
+        instanciaFuerzaBrutaQuemado.findSets(array20);
+        
+        System.out.println("ALEATORIO FUERZA BRUTA: 20");
+        instanciaFuerzaBrutaAleatorio = new FuerzaBruta();
+        instanciaFuerzaBrutaAleatorio.findSets(arrayAleatorio);
+        
+        System.out.println("QUEMADO DINAMICO: 20");
+        instanciaProgramacionDinamica = new Dinamico();
+        instanciaProgramacionDinamica.findSets(array20);
+        
+        System.out.println("ALEATORIO DINAMICO: 20");
+        instanciaProgramacionDinamica = new Dinamico();
+        instanciaProgramacionDinamica.findSets(arrayAleatorio);
+        System.out.println("-------------------------------------");
+        
         //Cantidad numero en el conjunto: 30 
+        System.out.println("30 ELEMENTOS");
+        
+        int [] array30  = {17, -59, 38, 74, 27, -26, -27, 53, -95, -65, -87, 98, 30,
+        -71, 56, -53, -68, 44, -24, -97, 29, 18, -34, -29, -10, 19, 1, -20, -50, 25};
+        arrayAleatorio = generarArrayRandom(30,-100,100);
+        
+        System.out.println("QUEMADO FUERZA BRUTA: 30");
+        instanciaFuerzaBrutaQuemado = new FuerzaBruta();
+        instanciaFuerzaBrutaQuemado.findSets(array30);
+        
+        System.out.println("ALEATORIO FUERZA BRUTA: 30");
+        instanciaFuerzaBrutaAleatorio = new FuerzaBruta();
+        instanciaFuerzaBrutaAleatorio.findSets(arrayAleatorio);
+        
+        System.out.println("QUEMADO DINAMICO: 30");
+        instanciaProgramacionDinamica = new Dinamico();
+        instanciaProgramacionDinamica.findSets(array30);
+        
+        System.out.println("ALEATORIO DINAMICO: 30");
+        instanciaProgramacionDinamica = new Dinamico();
+        instanciaProgramacionDinamica.findSets(arrayAleatorio);
+        System.out.println("-------------------------------------");
     }
 }
