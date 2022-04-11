@@ -10,6 +10,8 @@ import java.util.Random;
  */
 
 public class Main{
+    //static FuerzaBruta instanciaFuerzaBruta;
+    static Dinamico instanciaProgramacionDinamica;
     /**
      *  
      * @param min: Numero menor para generar el random.
@@ -45,19 +47,37 @@ public class Main{
     }
   
     public static void main(String[] args){
+        //Cantidad numero en el conjunto: 3
+        int [] array = {-3,1,2};
+        int [] arrayAleatorio3 = generarArrayRandom(3,-100,100);
+        System.out.println("QUEMADO FUERZA BRUTA: 3");
+        FuerzaBruta instanciaFuerzaBrutaQuemado3 = new FuerzaBruta();
+        instanciaFuerzaBrutaQuemado3.findSets(array);
         
-        //Prueba dinamico con array random
-        //int [] array = generarArrayRandom(7,-100,100);
-        //int [] array = {-1,2,3,4};//error aproximacion, no es la mas cercana a 0
-        int [] array = {1,-2,-3,-4};
-        //int [] array = {-5,-3,1,2,3,4};
-        //int [] array={-2,2};
-        //int [] array={-3,1};
-        //int [] array={-25,-22,-12,1,3,6,10,15};
-        Dinamico dinamico = new Dinamico();
-        dinamico.subsetSum(array);
         
-        FuerzaBruta fb= new FuerzaBruta();
-        fb.findSets(array);
+        System.out.println("ALEATORIO FUERZA BRUTA: 3");
+        FuerzaBruta instanciaFuerzaBrutaAleatorio3 = new FuerzaBruta();
+        instanciaFuerzaBrutaAleatorio3.findSets(arrayAleatorio3);
+        
+        
+        System.out.println("QUEMADO DINAMICO: 3");
+        instanciaProgramacionDinamica = new Dinamico();
+        instanciaProgramacionDinamica.findSets(array);
+        
+        System.out.println("ALEATORIO DINAMICO: 3");
+        instanciaProgramacionDinamica = new Dinamico();
+        instanciaProgramacionDinamica.findSets(arrayAleatorio3);
+        //Cantidad numero en el conjunto: 4
+        //Cantidad numero en el conjunto: 5
+        //Cantidad numero en el conjunto: 6
+        //Cantidad numero en el conjunto: 7
+        //Cantidad numero en el conjunto: 10
+        //Cantidad numero en el conjunto: 11
+        //Cantidad numero en el conjunto: 12
+        //Cantidad numero en el conjunto: 13
+        //Cantidad numero en el conjunto: 14
+        //Cantidad numero en el conjunto: 15
+        //Cantidad numero en el conjunto: 20
+        //Cantidad numero en el conjunto: 30 
     }
 }

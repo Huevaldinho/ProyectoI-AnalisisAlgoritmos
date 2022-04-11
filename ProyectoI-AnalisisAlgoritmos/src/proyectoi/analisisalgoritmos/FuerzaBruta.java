@@ -25,28 +25,23 @@ public class FuerzaBruta{
     //También nos ayudará a saber si en algún momento se encuentra la combinación (sumMenor = 0)
     static long startTime;
     static long endTime;
-    public FuerzaBruta(){
-    }    
+    public FuerzaBruta(){}    
     /***
      *  Metodo para verificar que el algoritmo no sea null, de lo contrario llama
      * al algoritmo de fuerza bruta.
      * @param array: Arreglo de numeros en el que se buscara si  hay subconjunto  que sume 0.
-     * @return combMasCercana: Arreglo de números que suman cero o el número más cercano a cero. 
      */
-    public List<Integer> findSets(int [] array){
+    public void findSets(int [] array){
         Arrays.sort(array);//Ordena el arreglo
-        System.out.println("------Algoritmo Fuerza Bruta------");
-        System.out.println("Conjunto base: " + Arrays.toString(array));
+        System.out.println("------------");
         System.out.println("Cantidad de elementos: "+array.length);
+        System.out.println("Conjunto base: " + Arrays.toString(array));
         List<Integer> subconjunto = new ArrayList<>();
         
         startTime = System.nanoTime();
         fuerzaBruta(array, 0, 0, subconjunto); 
         endTime = System.nanoTime() - startTime; 
-        System.out.println("Tiempo total: "+endTime + " nanosegundos.");
-        //Para que no muestre el número como 4E, 6E...etc (Imprime 6 decimales)
-        System.out.printf("Equivalente a %.7f", (double)endTime/1000000000);
-        System.out.println(" segundos.");
+        
         //System.out.println("Equivalente a "+ (double)endTime/1000000000+" segundos.");
         
         if(combMasCercana==null && array.length==0){//Si esto se cumple siginifica que es conjunto vacio
@@ -57,8 +52,12 @@ public class FuerzaBruta{
             System.out.println("No hay subconjunto que sumado de cero, el mas aproximado es: ");
         System.out.println("Subconjunto encontrado: "+ combMasCercana);
         System.out.println("Asignaciones: "+asig);
-        System.out.println("Compraciones: "+comp+"\n");
-        return combMasCercana;
+        System.out.println("Compraciones: "+comp);
+        System.out.println("Cantidad lineas ejecutadas: "+(asig+comp));
+        //Para que no muestre el número como 4E, 6E...etc (Imprime 6 decimales)
+        System.out.printf("Tiempo total %.6f", (double)endTime/1000000000);
+        System.out.println(" segundos.");
+        System.out.println("Cantidad de lineas del algoritmo: "+44+"\n");
     }
     /**
      * Algoritmo que encuentra (si existe) el subconjunto que sumado de cero. Si no
