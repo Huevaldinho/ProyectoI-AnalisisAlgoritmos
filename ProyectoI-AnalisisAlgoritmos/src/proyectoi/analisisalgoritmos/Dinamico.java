@@ -28,6 +28,10 @@ public class Dinamico{
     static long endTime;
     
     public Dinamico() {
+        asig = 0;
+        comp = 0;
+        startTime = 0;
+        endTime = 0;
         sumaPositivos=0;
         sumaNegativos=0;
         valorColumna= new HashMap<>();
@@ -96,9 +100,11 @@ public class Dinamico{
         if (sumaNegativos==0){
             subconjunto.add(array[0]);//Agrega el menor de los positivos
             asig+=1;
+            comp+=1;
         }else if (sumaPositivos==0){//No hay positivos, tome el mayor de los menores (el mas cercano a 0)
             subconjunto.add(array[array.length-1]);//Agrega el mayor de los negativos
             asig+=1;
+            comp+=1;
         }else{//Hacer todo el proceso porque tenemos positivos y negativos
             //Crear matriz
             int numeroColumnas = sumaPositivos+abs(sumaNegativos)+1;//Cantidad de columnas necesarias

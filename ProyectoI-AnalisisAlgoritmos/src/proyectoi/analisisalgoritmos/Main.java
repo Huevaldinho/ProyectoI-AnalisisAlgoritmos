@@ -54,11 +54,9 @@ public class Main{
         FuerzaBruta instanciaFuerzaBrutaQuemado3 = new FuerzaBruta();
         instanciaFuerzaBrutaQuemado3.findSets(array);
         
-        
         System.out.println("ALEATORIO FUERZA BRUTA: 3");
         FuerzaBruta instanciaFuerzaBrutaAleatorio3 = new FuerzaBruta();
         instanciaFuerzaBrutaAleatorio3.findSets(arrayAleatorio3);
-        
         
         System.out.println("QUEMADO DINAMICO: 3");
         instanciaProgramacionDinamica = new Dinamico();
