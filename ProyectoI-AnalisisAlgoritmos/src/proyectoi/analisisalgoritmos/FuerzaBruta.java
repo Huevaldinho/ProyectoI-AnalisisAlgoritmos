@@ -25,7 +25,16 @@ public class FuerzaBruta{
     //También nos ayudará a saber si en algún momento se encuentra la combinación (sumMenor = 0)
     static long startTime;
     static long endTime;
-    public FuerzaBruta(){}    
+    public FuerzaBruta(){}
+    
+    public void reiniciarVariables(){
+        asig = 0;
+        comp = 0;
+        List<Integer> combMasCercana; 
+        sumaMenor = 1000; 
+        startTime = 0;
+        endTime = 0;
+    }
     /***
      *  Metodo para verificar que el algoritmo no sea null, de lo contrario llama
      * al algoritmo de fuerza bruta.
@@ -33,6 +42,12 @@ public class FuerzaBruta{
      */
     public void findSets(int [] array){
         Arrays.sort(array);//Ordena el arreglo
+        System.out.println("------------");
+        System.out.println("PRUEBA: COMB MAS CERCANA: " + combMasCercana);
+        System.out.println("PRUEBA: ASIGNACIONES: " + asig);
+        System.out.println("PRUEBA: COMPARACIONES: " + comp);
+        System.out.println("PRUEBA: SUMA MENOR: " + sumaMenor);
+        System.out.println("------------");
         System.out.println("------------");
         System.out.println("Cantidad de elementos: "+array.length);
         System.out.println("Conjunto base: " + Arrays.toString(array));
@@ -58,6 +73,8 @@ public class FuerzaBruta{
         System.out.printf("Tiempo total %.6f", (double)endTime/1000000000);
         System.out.println(" segundos.");
         System.out.println("Cantidad de lineas del algoritmo: "+44+"\n");
+        reiniciarVariables();
+       
     }
     /**
      * Algoritmo que encuentra (si existe) el subconjunto que sumado de cero. Si no
