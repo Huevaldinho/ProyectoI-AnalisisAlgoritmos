@@ -10,7 +10,9 @@ import java.util.stream.IntStream;
 /**
  *
  * @author Felipe Obando y Sophya
- * Idea de: https://skorks.com/2011/02/algorithms-a-dropbox-challenge-and-dynamic-programming/
+ * Solucion desarrollada el 27/02/2011 por Alan Skorkin "en papel" y en Ruby.
+ * https://skorks.com/2011/02/algorithms-a-dropbox-challenge-and-dynamic-programming/
+ * El codigo se implemento en Java a partir de esa solucion.
  */
 public class Dinamico{
     //Suma de todos los numeros positivos.
@@ -24,6 +26,7 @@ public class Dinamico{
     //Variables para contar asignaciones y comparaciones
     static long asig;
     static long comp;
+    //Variables para tomar el tiempo de ejecucion del algoritmo.
     static long startTime;
     static long endTime;
     
@@ -38,7 +41,7 @@ public class Dinamico{
         subconjunto = new ArrayList<>();
     }
     /**
-     * Metodo para sumar todos los negativos y todos los positivos.
+     * Metodo para sumar todos los negativos y todos los positivos del arreglo dado.
      * @param array: Array de numeros enteros.
      */
     static void sumarNumeros(int array[]){
@@ -50,7 +53,7 @@ public class Dinamico{
         }
     }
 //    /**
-//     * Metodo para imprimir la matriz generada.
+//     * Metodo para imprimir la matriz generada por el algoritmo.
 //     * @param array: Array de numeros
 //     * @return int[][]: Matriz de tamano: filas = array.lenght y columnas = suma de todos los positivos + abs(suma de todos los negativos) +1 (cero).
 //     */
@@ -81,7 +84,7 @@ public class Dinamico{
         }
     }
     /**
-     * Dado un conjunto de enteros, encontrar subconjunto que sumado de cero.
+     * Metodo para determinar si se necesita ejecutar todo el algoritmo de programacion dinamica.
      * @param array: Arreglo donde se buscara el subconjunto que sumado de cero.
      */
     public void findSets(int array[]){
@@ -128,8 +131,9 @@ public class Dinamico{
         System.out.println("Cantidad de lineas del algoritmo: "+192+"\n");
         
     }/**
-     *  Metodo para conseguir el subconjunto utilizando programacion dinamica
-     * almacena resultados en una matriz que utiliza para no repetir lo mismo varias veces.
+     *  Metodo para conseguir el subconjunto que sumado de cero, utilizando programacion dinamica
+     * almacena resultados en una matriz que utiliza para no repetir las mismas
+     * comparaciones.
      * @param array: Array del conjunto base
      * @param matriz: Matriz donde se guardan resultados
      * @param columnasTotales: Numero total de columnas de matriz.
@@ -211,7 +215,7 @@ public class Dinamico{
         resultado(array,matriz);
     }
     /**
-     * 
+     * Metodo para separar los numeros positivos de los negativos de un arreglo dado.
      * @param a: Array con numeros enteros.
      * @return int[][]: Retorna matriz con negativos y positivos separados. int[0] = Negativos, int[1] = Positivos.
      */
@@ -261,7 +265,7 @@ public class Dinamico{
         }
     }
     /**
-     * Metodo para leer si existe o no un subconjunto que sumado de 0.
+     * Metodo para leer si existe o no un subconjunto que sumado de cero.
      * @param array: Arreglo del conjunto base.
      * @param matriz: Matriz completa.
      */

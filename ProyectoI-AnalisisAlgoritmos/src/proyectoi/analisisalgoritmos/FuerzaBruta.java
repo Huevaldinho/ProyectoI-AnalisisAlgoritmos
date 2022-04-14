@@ -23,12 +23,12 @@ public class FuerzaBruta{
     //Variable que guarda el número que suma la combinación (respaldo de currensum - GLOBAL)
     static int sumaMenor = 1000; 
     //También nos ayudará a saber si en algún momento se encuentra la combinación (sumMenor = 0)
+    //Variables para tomar el tiempo del algoritmo.
     static long startTime;
     static long endTime;
     public FuerzaBruta(){
         asig = 0;
         comp = 0;
-        List<Integer> combMasCercana; 
         sumaMenor = 1000; 
         startTime = 0;
         endTime = 0;
