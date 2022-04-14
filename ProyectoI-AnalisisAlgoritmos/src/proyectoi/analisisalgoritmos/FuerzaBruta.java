@@ -9,7 +9,7 @@ import java.util.stream.IntStream;
 
 /**
  *
- * @author Sumit Jain
+ * @author Sumit Jain (October 30, 2019)
  * Tomado de: https://algorithms.tutorialhorizon.com/print-all-subsets-of-an-array-with-a-sum-equal-to-zero/
  * Modificado para guardar el subconjunto que sumado de cero o el mas cercano.
  */
