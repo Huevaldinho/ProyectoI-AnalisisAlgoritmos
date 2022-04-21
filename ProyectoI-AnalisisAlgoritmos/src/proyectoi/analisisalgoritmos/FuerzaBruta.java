@@ -12,6 +12,11 @@ import java.util.stream.IntStream;
  * @author Sumit Jain (October 30, 2019)
  * Tomado de: https://algorithms.tutorialhorizon.com/print-all-subsets-of-an-array-with-a-sum-equal-to-zero/
  * Modificado para guardar el subconjunto que sumado de cero o el mas cercano.
+ * 
+ * Esta clase sirve para, dado un conjunto, encontrar y retornar el subconjunto
+ * que sumado dé cero, en caso de no existir este subconjunto, encuentra y retorna
+ * el subconjunto que sume el número más aproximado a cero. 
+ * Implementando el método de programación de fuerza bruta.
  */
 
 public class FuerzaBruta{

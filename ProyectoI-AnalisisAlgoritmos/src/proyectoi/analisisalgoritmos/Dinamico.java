@@ -13,6 +13,11 @@ import java.util.stream.IntStream;
  * Solucion desarrollada el 27/02/2011 por Alan Skorkin "en papel" y en Ruby.
  * https://skorks.com/2011/02/algorithms-a-dropbox-challenge-and-dynamic-programming/
  * El codigo se implemento en Java a partir de esa solucion.
+ * 
+ * Esta clase sirve para, dado un conjunto, encontrar y retornar el subconjunto
+ * que sumado dé cero, en caso de no existir este subconjunto, encuentra y retorna
+ * el subconjunto que sume el número más aproximado a cero. 
+ * Implementando el método de programación dinámica.
  */
 public class Dinamico{
     //Suma de todos los numeros positivos.
